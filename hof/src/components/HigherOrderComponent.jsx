@@ -85,6 +85,22 @@ class HigherOrderComponent extends Component{
         })
         return mapRows
     }
+    //PROGRESSION 6
+    //display total experince of the designers
+    renderItemsExp = () =>{
+        const data = this.state.userData;
+        const mapRows = data.filter((item) =>{
+            return item.user_type === 'Designer'
+        })
+        .reduce((a,b) => {
+            return a.years + b.years;
+        })
+        return <React.Fragment>
+            <li className="list-elements">
+                <span>{mapRows}</span>
+            </li>
+        </React.Fragment>
+    }
     render(){
         return(
             //insted of a parent div we can also use React.Fragment
@@ -104,6 +120,10 @@ class HigherOrderComponent extends Component{
                 <h1>Filter data based on age greater than 28 and less than or equal to 50</h1>
                 <div className="display-box">
                     <ul>{this.renderItemsAge()}</ul>
+                </div>
+                <h1>Find total years of the designers</h1>
+                <div className="display-box">
+                    <ul>{this.renderItemsExp()}</ul>
                 </div>
             </React.Fragment>
         )
