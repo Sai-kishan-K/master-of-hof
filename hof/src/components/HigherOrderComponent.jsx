@@ -48,6 +48,43 @@ class HigherOrderComponent extends Component{
         })
         return mapRows;
     }
+    
+    // PROGRESSION 4
+    //display data starting with letter J
+    renderItems3 = () => {
+        const data = this.state.userData;
+        const mapRows = data.filter((item) =>{
+            return item.name.startsWith("J")
+        })
+        .map((item) =>{
+            return <React.Fragment key ={item.id}>
+            <li className = "list-elements">
+                <span>ID : {item.id}</span>
+                <span>Name : {item.name}</span>
+                <span>User Type : {item.user_type}</span>
+            </li>
+        </React.Fragment>
+        })
+        return mapRows;
+    }
+    // PROGRESSION 5
+    //display data based on age
+    renderItemsAge = () => {
+        const data = this.state.userData;
+        const mapRows = data.filter((item)=>{
+            return item.age >28 && item.age<=50;
+        })
+        .map((item) => {
+            return <React.Fragment key = {item.id}>
+                <li className="list-elemenets">
+                    <span>ID : {item.id}</span>
+                    <span>Name : {item.name}</span>
+                    <span>User Type: {item.user_type}</span>
+                </li>
+            </React.Fragment>
+        })
+        return mapRows
+    }
     render(){
         return(
             //insted of a parent div we can also use React.Fragment
@@ -59,6 +96,14 @@ class HigherOrderComponent extends Component{
                 <h1>Display based on type</h1>
                 <div className="display-box">
                     <ul>{this.renderItems2('Designer')}</ul>
+                </div>
+                <h1>Filter all data starting with J</h1>
+                <div className="display-box">
+                    <ul>{this.renderItems3()}</ul>
+                </div>
+                <h1>Filter data based on age greater than 28 and less than or equal to 50</h1>
+                <div className="display-box">
+                    <ul>{this.renderItemsAge()}</ul>
                 </div>
             </React.Fragment>
         )
